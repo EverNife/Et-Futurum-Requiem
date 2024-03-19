@@ -191,9 +191,11 @@ public class WorldEventHandler {
 						if (world.getBlock(hiveX, y, hiveZ).getMaterial() == Material.air && world.getBlock(hiveX, y, hiveZ + 1).getMaterial() == Material.air) {
 							world.setBlock(hiveX, y, hiveZ, ModBlocks.BEE_NEST.get(), ForgeDirection.SOUTH.ordinal(), 2);
 							TileEntityBeeHive hive = ((TileEntityBeeHive) world.getTileEntity(hiveX, y, hiveZ));
-							for (int i = MathHelper.getRandomIntegerInRange(rand, minBees, hive.maxHiveSize()) - minBees; i < hive.maxHiveSize(); i++) {
-								EntityBee bee = new EntityBee(world);
-								hive.tryEnterHive(bee, false, rand.nextInt(599));
+							if (hive != null){
+								for (int i = MathHelper.getRandomIntegerInRange(rand, minBees, hive.maxHiveSize()) - minBees; i < hive.maxHiveSize(); i++) {
+									EntityBee bee = new EntityBee(world);
+									hive.tryEnterHive(bee, false, rand.nextInt(599));
+								}
 							}
 							return;
 						}
