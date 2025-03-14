@@ -29,6 +29,11 @@ public class EtFuturumLateMixins implements ILateMixinLoader {
 			}
 		}
 
+		if (loadedMods.contains("ExtraUtilities")) {
+			mixins.add("extrautilities.EventHandlerServerMixin");
+			mixins.add("extrautilities.ItemDivisionSigilMixin");
+		}
+
 		return mixins;
 	}
 }

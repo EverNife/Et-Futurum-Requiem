@@ -51,6 +51,7 @@ dependencies {
     compileOnly "codechicken:CodeChickenCore:1.7.10-1.0.7.47:dev"
     compileOnly 'com.github.GTNewHorizons:ironchest:6.0.87'
     compileOnly 'curse.maven:applied-energistics-2-223794:2296430'
+    compileOnly 'curse.maven:extra-utilities-225561:2264383'
 
     compileOnly("com.github.GTNewHorizons:TinkersConstruct:1.12.6-GTNH:dev") {
         transitive = false

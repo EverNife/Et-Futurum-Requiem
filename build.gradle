@@ -32,13 +32,7 @@ if (isDirty && !noCommitHash) {
 }
 
 //Set the mod and jar version to the info we just collected.
-version = NEXT_VERSION
-
-//If version is blank we'll use the above version instead.
-if(ext.modVersion.isEmpty()) {
-    ext.modVersion = NEXT_VERSION
-}
-
+version = ext.modVersion + '-evernife-v1'
 
 minecraft {
     //Creates a tag in Tags with the above generated mod version, instead of the "clean" one
