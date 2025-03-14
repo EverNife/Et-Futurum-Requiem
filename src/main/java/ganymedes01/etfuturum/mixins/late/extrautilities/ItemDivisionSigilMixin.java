@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = ItemDivisionSigil.class)
 public class ItemDivisionSigilMixin {
 
-    @Inject(method = "func_77648_a(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/World;IIIIFFF)Z", at = @At(value = "HEAD"), cancellable = true, remap = false)
+    @Inject(method = "onItemUse(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/world/World;IIIIFFF)Z", at = @At(value = "HEAD"), cancellable = true, remap = false)
     public void onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10, CallbackInfoReturnable<Boolean> cir){
 
         if (world.isRemote) {
