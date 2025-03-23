@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "minVersion": "0.7.11",
+  "package": "ganymedes01.etfuturum.mixins.late",
+  "refmap": "mixins.etfuturum.refmap.json",
+  "target": "@env(DEFAULT)",
+  "compatibilityLevel": "JAVA_8",
+  "overwrites": {
+    "conformVisibility": true
+  }
+}

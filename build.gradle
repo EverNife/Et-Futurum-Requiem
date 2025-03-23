@@ -27,7 +27,7 @@ if (isDirty && !noCommitHash) {
 }
 
 //Set the mod and jar version to the info we just collected.
-version = ext.modVersion + '-evernife-v1'
+version = ext.modVersion + '-evernife-v2'
 
 minecraft {
     //Creates a tag in Tags with the above generated mod version, instead of the "clean" one

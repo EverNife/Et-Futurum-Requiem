@@ -29,7 +29,7 @@ public class EventHandlerServerMixin {
             if (event.source.getSourceOfDamage() instanceof EntityPlayer) {
                 World world = event.entityLiving.worldObj;
 
-                if (!world.isRemote) {
+                if (world.isRemote) {
                     return;
                 }
 
