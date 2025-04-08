@@ -111,6 +111,7 @@ public class EtFuturumEarlyMixins implements IFMLLoadingPlugin, IEarlyMixinLoade
 			mixins.add("backlytra.MixinEntityLivingBase");
 			mixins.add("backlytra.MixinNetHandlerPlayServer");
 			mixins.add("backlytra.MixinEntityTrackerEntry");
+			mixins.add("backlytra.MixinEntityTracker");
 			if (doesClassExist("thaumcraft/common/lib/events/EventHandlerEntity")) {
 				mixins.add("backlytra.thaumcraft.MixinEventHandlerEntity");
 			}

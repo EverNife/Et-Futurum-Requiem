@@ -27,6 +27,7 @@ import ganymedes01.etfuturum.configuration.configs.*;
 import ganymedes01.etfuturum.core.utils.ItemStackMap;
 import ganymedes01.etfuturum.core.utils.ItemStackSet;
 import ganymedes01.etfuturum.core.utils.Utils;
+import ganymedes01.etfuturum.elytra.IElytraEntityTracker;
 import ganymedes01.etfuturum.elytra.IElytraEntityTrackerEntry;
 import ganymedes01.etfuturum.elytra.IElytraPlayer;
 import ganymedes01.etfuturum.entities.*;
@@ -1887,16 +1888,25 @@ public class ServerEventHandler {
 	@SuppressWarnings("unchecked")
 	public void onPostWorldTick(TickEvent.WorldTickEvent e) {
 		if (ConfigMixins.enableElytra && e.phase == TickEvent.Phase.END && e.world instanceof WorldServer ws) {
-			for (EntityTrackerEntry ete : (Set<EntityTrackerEntry>) ws.getEntityTracker().trackedEntities) {
-				if (ete != null && ete.myEntity instanceof IElytraPlayer elb) {
-					boolean flying = elb.etfu$isElytraFlying();
-					if (!flying && ((IElytraEntityTrackerEntry) ete).etfu$getWasSendingVelUpdates()) {
-						ete.sendVelocityUpdates = false;
-					} else if (flying) {
-						if (!ete.sendVelocityUpdates) {
-							((IElytraEntityTrackerEntry) ete).etfu$setWasSendingVelUpdates(true);
+
+			IElytraEntityTracker entityTracker = (IElytraEntityTracker) ws.getEntityTracker();
+
+			for (EntityPlayer playerEntity : ws.playerEntities) {
+				if (playerEntity instanceof IElytraPlayer elb){
+
+					EntityTrackerEntry ete = entityTracker.etfu$getEntityTracker(playerEntity.getEntityId());
+
+					if (ete != null){
+						boolean flying = elb.etfu$isElytraFlying();
+
+						if (!flying && ((IElytraEntityTrackerEntry) ete).etfu$getWasSendingVelUpdates()) {
+							ete.sendVelocityUpdates = false;
+						} else if (flying) {
+							if (!ete.sendVelocityUpdates) {
+								((IElytraEntityTrackerEntry) ete).etfu$setWasSendingVelUpdates(true);
+							}
+							ete.sendVelocityUpdates = true;
 						}
-						ete.sendVelocityUpdates = true;
 					}
 				}
 			}
