@@ -167,13 +167,15 @@ public class BlockBeeHive extends BlockContainer {
 
 	private void angerNearbyBees(World p_226881_1_, int x, int y, int z) {
 		AxisAlignedBB box = AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(8.0D, 6.0D, 8.0D);
-		List<EntityBee> list = p_226881_1_.getEntitiesWithinAABB(EntityBee.class, box);
-		if (!list.isEmpty()) {
-			List<EntityPlayer> list1 = p_226881_1_.getEntitiesWithinAABB(EntityPlayer.class, box);
-			int i = list1.size();
-			for (EntityBee beeentity : list) {
-				if (beeentity.getAttackTarget() == null) {
-					beeentity.setBeeAttacker(list1.get(p_226881_1_.rand.nextInt(i)));
+		List<EntityBee> nearbyBees = p_226881_1_.getEntitiesWithinAABB(EntityBee.class, box);
+		if (!nearbyBees.isEmpty()) {
+			List<EntityPlayer> nearbyPlayers = p_226881_1_.getEntitiesWithinAABB(EntityPlayer.class, box);
+			if (!nearbyPlayers.isEmpty()){
+				int i = nearbyPlayers.size();
+				for (EntityBee beeentity : nearbyBees) {
+					if (beeentity.getAttackTarget() == null) {
+						beeentity.setBeeAttacker(nearbyPlayers.get(p_226881_1_.rand.nextInt(i)));
+					}
 				}
 			}
 		}
